@@ -8,10 +8,10 @@ function solve(map, miner, exit) {
 	function convert(path) {
 		var result = [];
 		for(var i=1; i<path.length; i++) {
-			var diffx = path[i].x - path[i-1].x;
-			var diffy = path[i].y - path[i-1].y;
-			if (diffx) result.push(~diffx ? 'right' : 'left');
-			if (diffy) result.push(~diffy ? 'down' : 'up' );
+			var dx = path[i].x - path[i-1].x;
+			var dy = path[i].y - path[i-1].y;
+			if (dx) result.push(~dx ? 'right' : 'left');
+			if (dy) result.push(~dy ? 'down' : 'up' );
 		}
 		return result;
 	}
