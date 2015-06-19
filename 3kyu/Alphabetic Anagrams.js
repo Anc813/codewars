@@ -11,22 +11,21 @@ function listPosition (word) {
 
 	function combinations (word) {
 		// calc permutations
-		return unique(word).reduce(function (previousValue, e) {
-			return previousValue / factorial(word.split(e).length - 1)
+		return unique(word).reduce(function (prev, e) {
+			return prev / factorial(word.split(e).length - 1)
 		}, factorial(word.length));
 	}
 
-	var sum = 0;
   	//Return the anagram list position of the word
-  	word.split('').forEach(function (e,i,a) {
+  	return word.split('').reduce(function (prev,e,i,a) {
   		var subword = word.slice(i);
   		var u = unique(subword);
 
   		for(var i=0; i<u.length; i++) {
   			if (u[i] == e) break;
-  			sum+= combinations(subword.replace(u[i], ''));
+  			prev+= combinations(subword.replace(u[i], ''));
   		}
-  	})
 
-  	return sum + 1;
+  		return prev;
+  	}, 1)
 }
