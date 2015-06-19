@@ -17,15 +17,12 @@ function listPosition (word) {
 	}
 
   	//Return the anagram list position of the word
-  	return word.split('').reduce(function (prev,e,i,a) {
+  	return word.split('').reduce(function (sum,e,i,a) {
   		var subword = word.slice(i);
   		var u = unique(subword);
 
-  		for(var i=0; i<u.length; i++) {
-  			if (u[i] == e) break;
-  			prev+= combinations(subword.replace(u[i], ''));
-  		}
-
-  		return prev;
+  		return u.slice(0, u.indexOf(e)).reduce(function (sum, e) {
+  			return sum + combinations(subword.replace(e, ''));
+  		}, sum)
   	}, 1)
 }
